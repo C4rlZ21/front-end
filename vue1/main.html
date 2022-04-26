@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+    <title>vue</title>
+</head>
+
+<body>
+    <div id="app">
+        <div v-if="ver == true">
+            mostrar
+        </div>
+        <input v-model="maria"> <br>
+        Hello {{maria}} <br>
+        <button @click="count++">count is:{{ count }}</button>
+        <button @click="increment()">
+            count is:{{count2}}
+        </button>
+        <br>
+        <input type="checkbox" id="jack" value="Jack" v-model="CheckedNames">
+        <label for="jack">Jack</label>
+        <input type="checkbox" id="john" value="John" v-model="CheckedNames">
+        <label for="john">John</label>
+        <input type="checkbox" id="Mike" value="Mike" v-model="CheckedNames">
+        <label for="Mike">Mike</label>
+        <br>
+        <span>checked names: {{ CheckedNames }} </span>
+
+
+        <ul v-for="nomes in  listanome">
+            <li>
+                <b>{{nomes.jose}}</b> - <i>{{nomes.idades}}</i> - {{nomes.naosei}}
+            </li>
+        </ul>
+        <div v-if="count > 10">
+            count is greater then 10
+        </div>
+        <div v-else-if="count == 10">
+            count is 10
+        </div>
+        <div v-else>
+            count is less then 10
+        </div>
+
+        <h2>Greet</h2>
+        <button v-on:click="greet('Hello')">Say Hello</button>
+        <button v-on:click="greet('Hi')">Say Hi</button>
+        <button v-on:click="greet('Nameste')">Say nameste</button>
+        <br>
+        {{greeting}}
+    </div>
+
+
+    <script>
+        new Vue({
+            el: '#app',
+            data: {
+                maria: "Joao",
+                ver: true,
+                count: 0,
+                count2: 0,
+                CheckedNames: [],
+                listanome: [
+                        {
+                            jose: "manel",
+                            idades: 200,
+                            naosei: 20
+                        },
+                        {
+                            jose: "Miguel",
+                            idades: 570,
+                            naosei: 12
+                        },
+                        {
+                            jose: "joao",
+                            idades: 120,
+                            naosei: 30
+                        }
+                    ],
+                count: 11,
+                greeting:'',
+
+            },
+            methods: {
+                increment() {
+                    this.count2 = this.count2 + 10;
+                },
+                greet: function(greeting){
+                    this.greeting=greeting + ", how are you?";
+                }
+            }
+        })
+
+    </script>
+</body>
+
+</html>

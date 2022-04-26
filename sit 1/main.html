@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+
+    <title>Web Site 1 Fend</title>
+</head>
+
+<body>
+    <div class="background">
+        <H1>Shopping List</H1>
+        <div>
+            <div style="display: flex; justify-content: space-between;">
+                <h3>quantity</h3>
+                <h3>Item</h3>
+                <h3>Actions</h3>
+            </div>
+            <div id="test">
+                <ul v-for="inde in listas" style=" display: flex; justify-content: space-between;">
+                    <td v-if="lista.edit==false">{{i.quantitys}} </td>
+                    <td v-else>
+                        <input v-model="quantidade" type="text">
+                    </td>
+                    <td v-if="lista.edit == false">{{i.names}}</td>
+                    <td v-else>
+                        <input v-model="nome" type="text">
+                    </td>
+                    <div>
+                        <button class="edit1" @click="edititem()">Edit</button>
+                        <button class="delete" @click="removeitem()">Delete</button>
+                    </div>
+                    
+                </ul>
+                <div>
+                    <h2>Add new item</h2>
+                    <div style="display: flex;">
+                        <div>
+                            <p>Quantity</p>
+                            <input v-model="quantidade" type="text">
+                        </div>
+                        <div>
+                            <p>Name</p>
+                            <input v-model="nome" type="text">
+                        </div>
+                    </div>
+                    <br>
+                    <button @click="additem()" class="add">add</button>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <style>
+        .background {
+            padding: 15px;
+            background-color: rgb(157, 201, 238);
+            width: 50%;
+            height: 50%;
+        }
+
+        .edit1 {
+            background-color: rgb(19, 101, 156);
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .delete {
+            background-color: rgb(182, 39, 39);
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+        }
+
+        .add {
+            background-color: rgb(19, 101, 156);
+            padding: 10px;
+            border-radius: 5px;
+            color: white;
+        }
+    </style>
+
+    <script>
+        new Vue({
+            el: "#test",
+            data: {
+                quantidade: '',
+                nome: '',
+                listas: [
+                    {
+                        quantitys: 3,
+                        names: "apple",
+                        edit: true,
+                    },
+                    {
+                        quantitys: 6,
+                        names: "pear",
+                        edit: false,
+                    },
+                ],
+            },
+            methods: {
+                additem() {
+                    this.listas.push({
+                        quantitys: this.quantidade,
+                        names: this.nome,
+                        edit: false,
+                    })
+                },
+                removeitem: function (index) {
+                    this.listas.splice(index, 1);
+                },
+                edititem: function(index){
+                    this.listas[index].edit=true;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

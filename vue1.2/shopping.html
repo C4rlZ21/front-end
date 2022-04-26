@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.0"></script>
+    <script src="https://unpkg.com/vue-router@2.0.0"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+<style>
+    body {
+        margin: 15px;
+    }
+
+    tr:hover {
+        background-color: lightblue;
+    }
+
+    table {
+        width: 50%;
+    }
+</style>
+
+<body>
+    <div id="app">
+        <table class="table">
+            <h2>Shopping List</h2>
+            <thead>
+                <tr>
+                    <th>Quantity</th>
+                    <th>Item</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+
+
+
+
+
+                <tr v-for="(product, index) in productsList">
+
+                    <td v-if="product.edit == false">{{product.quantity}}</td>
+                    <td v-else>
+                        <input class="form-control" type="text" v-model="quantityIN" v-bind:placeholder="product.quantity"/>
+                    </td>
+                    <td v-if="product.edit == false">{{product.item}}</td>
+                    <td v-else>
+                        <input class="form-control" type="text" v-model="itemIN" v-bind:placeholder="product.item"/>
+                    </td>
+
+         
+                    <td width="20%">
+
+                        <button class="btn btn-primary" @click="safe(index)">Save</button>
+                        <button class="btn btn-success" @click="editar(index)">Edit</button>
+                        <button class="btn btn-danger" @click="removeitem(index)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+            
+        </table>
+        <br>
+        <h2>Add new Item</h2>
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <span>Name</span>
+                <input class="form-control" type="text" v-model="itemIN">
+            </div>
+            <div class="col-md-6 mb-3">
+                <span>Quantity</span>
+                <input class="form-control" type="number" v-model="quantityIN">
+            </div>
+        </div>
+        <br>
+        <button class="btn btn-primary" @click="addItem()">Add new Item</button>
+    </div>
+</body>
+<script>
+    var app = new Vue({
+        el: "#app",
+        data: {
+            itemIN: '',
+            quantityIN: '',
+            productsList: [
+                {
+                    quantity: 0,
+                    item: "Apples",
+                    edit: false,
+                },
+                {
+                    quantity: 0,
+                    item: "Pears",
+                    edit: false,
+                },
+            ],
+        },
+        methods: {
+            addItem: function () {
+                this.productsList.push({
+                    quantity: this.quantityIN,
+                    item: this.itemIN,
+                    edit: false,
+                });
+            },
+            editar: function (index) {
+                this.productsList[index].edit = true;
+            },
+            safe:function (index){
+                this.productsList[index].edit = false;
+                this.productsList[index].quantity=this.quantityIN;
+                this.productsList[index].item=this.itemIN;
+            },
+            removeitem: function (index) {
+                    this.productsList.splice(index, 1);
+            }
+        }
+    },
+    );
+</script>
+
+</html>

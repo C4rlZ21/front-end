@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+
+<head>
+    <title>Video Jogo de Gabriel Canha 2024421</title>
+    <script>
+        var vida = 500
+        var vida2 = 500
+
+        //atack
+        function ataque(valor) {
+            var tamanhoBarra = document.getElementById("barra").clientWidth;
+            document.getElementById("barra").style.width = tamanhoBarra - valor + "px";
+            if (vida < 0) {
+                vida = 0;
+            }
+            vida = document.getElementById("barra").clientWidth;
+            document.getElementById("barra").textContent = parseInt(vida);
+
+            if (vida < valor) {
+                vida = 0;
+                document.getElementById("barra").textContent = "0";
+                document.getElementById("barra").style.width = "0px";
+            }
+            var pla1 = document.getElementById("player1").clientHeight;
+            document.getElementById("player1").style.height = pla1 - valor + "px";
+            applycolor(vida);
+        }
+        //heal
+        function Heal() {
+            if (vida < 500) {
+                var tamanhoBarra = document.getElementById("barra").clientWidth;
+                document.getElementById("barra").style.width = tamanhoBarra + 100 + "px";
+            }
+
+            vida = document.getElementById("barra").clientWidth;
+            document.getElementById("barra").textContent = parseInt(vida);
+
+            if (vida > 500) {
+                vida = 500;
+            }
+            var pla1 = document.getElementById("player1").clientHeight;
+            document.getElementById("player1").style.height = pla1 + 100 + "px";
+
+            applycolor(vida);
+            console.log(vida)
+        }
+        function applycolor(vida) {
+            if (vida >= 400) {
+                document.getElementById("barra").style.backgroundColor = "green";
+            }
+            else if (vida >= 200) {
+                document.getElementById("barra").style.backgroundColor = "yellow";
+            }
+            else if (vida >= 100) {
+                document.getElementById("barra").style.backgroundColor = "red";
+            }
+        }
+        //atack2_____________________________________________________________________________
+        function ataque2(valor2) {
+            var tamanhoBarra2 = document.getElementById("barra2").clientWidth;
+            document.getElementById("barra2").style.width = tamanhoBarra2 - valor2 + "px";
+            if (vida2 < 0) {
+                vida2 = 0;
+            }
+            vida2 = document.getElementById("barra2").clientWidth;
+            document.getElementById("barra2").textContent = parseInt(vida2);
+
+            if (vida2 < valor2) {
+                vida2 = 0;
+                document.getElementById("barra2").textContent = "0";
+                document.getElementById("barra2").style.width = "0px";
+            }
+            var pla2 = document.getElementById("player2").clientHeight;
+            document.getElementById("player2").style.height = pla2 - valor2 + "px";
+            applycolor2(vida2);
+        }
+        //heal2
+        function Heal2() {
+            if (vida2 < 500) {
+                var tamanhoBarra2 = document.getElementById("barra2").clientWidth;
+                document.getElementById("barra2").style.width = tamanhoBarra2 + 100 + "px";
+
+            }
+
+            vida2 = document.getElementById("barra2").clientWidth;
+            document.getElementById("barra2").textContent = parseInt(vida2);
+
+            if (vida2 > 500) {
+                vida2 = 500;
+            }
+            var pla1 = document.getElementById("player2").clientHeight;
+            document.getElementById("player2").style.height = pla1 + 100 + "px";
+
+            applycolor2(vida2);
+            console.log(vida2)
+        }
+
+        function applycolor2(vida2) {
+            if (vida2 >= 400) {
+                document.getElementById("barra2").style.backgroundColor = "green";
+            }
+            else if (vida2 >= 200) {
+                document.getElementById("barra2").style.backgroundColor = "yellow";
+            }
+            else if (vida2 >= 100) {
+                document.getElementById("barra2").style.backgroundColor = "red";
+            }
+        }
+    </script>
+
+</head>
+
+<body>
+    <div class="top">
+        <h1>Player 1</h1>
+        <div class="barras">
+            <div id="barra">500</div>
+        </div>
+        <div class="bar">
+            <button onclick="ataque2(100)"> atack</button>
+            <button onclick="ataque2(250)"> super atack</button>
+            <button onclick="Heal()"> Heal</button>
+        </div>
+        <div>
+            <img id="player1" src="player1.gif" alt="">
+        </div>
+    </div>
+
+
+    <div class="top2">
+
+        <h1>Player 2</h1>
+        <div class="barras2">
+            <div id="barra2">500</div>
+        </div>
+        <div class="bar2">
+            <button onclick="ataque(100)"> atack</button>
+            <button onclick="ataque(250)"> super atack</button>
+            <button onclick="Heal2()"> Heal</button>
+        </div>
+        <div>
+            <img id="player2" src="player2.gif" alt="">
+        </div>
+    </div>
+    </div>
+
+    <style>
+        #p1v {
+            font-size: 50;
+            color: tomato;
+        }
+
+        .top {
+            width: 500px;
+        }
+
+        .bar {
+            margin: 5px;
+            display: flex;
+            justify-content: center;
+            justify-content: space-around;
+        }
+
+        body {
+            align-items: flex-start;
+            justify-content: space-between;
+            background-image: url(aaaaa.jpg);
+            background-size: 100%;
+            background-repeat: no-repeat;
+            display: flex;
+        }
+
+        #player1 {
+            height: 500px;
+            width: auto;
+        }
+
+        #barra {
+            width: 500px;
+            height: 50px;
+            background-color: green;
+            color: white;
+            font-size: 22pt;
+            text-align: center;
+            border-radius: 50px;
+
+        }
+
+        .barras {
+            background-color: gray;
+            height: 50px;
+            width: 500px;
+            border-radius: 50px;
+        }
+
+        .top2 {
+            width: 500px;
+        }
+
+        .bar2 {
+            margin: 5px;
+            display: flex;
+            justify-content: center;
+            justify-content: space-around;
+        }
+
+        #player2 {
+            height: 500px;
+            width: auto;
+            transform: scaleX(-1);
+        }
+
+        #barra2 {
+            width: 500px;
+            height: 50px;
+            background-color: green;
+            color: white;
+            font-size: 22pt;
+            text-align: center;
+            border-radius: 50px;
+
+        }
+
+        .barras2 {
+            text-align: center;
+            display: flex;
+            justify-content: flex-end;
+            background-color: gray;
+            height: 50px;
+            width: 500px;
+            border-radius: 50px;
+        }
+    </style>
+</body>
+
+</html>
